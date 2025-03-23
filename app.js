@@ -1,16 +1,25 @@
 require("dotenv").config();
 const express = require("express");
 const connectDB = require("./config/database");
+const config = require("./config/config");
+const globalErrorHandler = require("./middlewares/globalErrorHandler");
+const createHttpErrors = require("http-errors");
 
 const app = express();
 
-const PORT = process.env.PORT || 8000;
+const PORT = config.port;
 connectDB();
 
+//endpoints
 app.get("/", (req, res) => {
+  //   const err = createHttpErrors(404, "something went wrong!!!");
+  //   throw err;
   res.json({ message: "Helo from pos server" });
 });
 
+//global error handler
+app.use(globalErrorHandler);
+//server
 app.listen(PORT, () => {
   console.log(`pos server is running on port ${PORT}`);
 });
