@@ -29,6 +29,9 @@ app.use("/api/user", require("./routes/userRoute"));
 //order
 app.use("/api/order", require("./routes/orderRoute"));
 
+//tables
+app.use("/api/table", require("./routes/tableRoute"));
+
 //global error handler
 app.use(globalErrorHandler);
 
