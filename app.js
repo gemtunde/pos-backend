@@ -26,6 +26,9 @@ app.get("/", (req, res) => {
 //user auth
 app.use("/api/user", require("./routes/userRoute"));
 
+//order
+app.use("/api/order", require("./routes/orderRoute"));
+
 //global error handler
 app.use(globalErrorHandler);
 
