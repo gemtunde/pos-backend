@@ -60,7 +60,11 @@ const login = async (req, res, next) => {
       sameSite: "none",
       secure: true,
     });
-    res.status(200).json({ success: true, message: "User login successfully" });
+    res.status(200).json({
+      success: true,
+      message: "User login successfully",
+      data: isUserPresent,
+    });
   } catch (error) {
     next(error);
   }
@@ -74,5 +78,13 @@ const getUserData = async (req, res, next) => {
     next(error);
   }
 };
+const logout = async (req, res, next) => {
+  try {
+    res.clearCookie("accessToken");
+    res.status(200).json({ success: true, message: "User logout successful" });
+  } catch (error) {
+    next(error);
+  }
+};
 
-module.exports = { register, login, getUserData };
+module.exports = { register, login, getUserData, logout };

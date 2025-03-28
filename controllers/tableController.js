@@ -3,8 +3,8 @@ const createHttpErrors = require("http-errors");
 
 const addTable = async (req, res, next) => {
   try {
-    const { tableNo } = req.body;
-    if (!tableNo) {
+    const { tableNo, seats } = req.body;
+    if (!tableNo || !seats) {
       const error = createHttpErrors(404, "Please provide Table no!!!");
       return next(error);
     }
@@ -16,7 +16,7 @@ const addTable = async (req, res, next) => {
       return next(error);
     }
 
-    const newTable = new Table({ tableNo });
+    const newTable = new Table({ tableNo, seats });
     await newTable.save();
     res
       .status(201)
@@ -25,24 +25,13 @@ const addTable = async (req, res, next) => {
     next(error);
   }
 };
-// const getOrderById = async (req, res, next) => {
-//   try {
-//     const { id } = req.params;
-//     const order = await Order.findById(id);
-//     if (!order) {
-//       const error = createHttpErrors(404, "order not found!!!");
-//       return next(error);
-//     }
-//     res
-//       .status(200)
-//       .json({ success: true, message: "order fetched", data: order });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+
 const getTables = async (req, res, next) => {
   try {
-    const table = await Table.find();
+    const table = await Table.find().populate({
+      path: "currentOrder",
+      select: "customerDetails",
+    });
     if (!table) {
       const error = createHttpErrors(404, "no table available!!!");
       return next(error);

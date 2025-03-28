@@ -5,6 +5,10 @@ const tableSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  seats: {
+    type: Number,
+    required: true,
+  },
   status: {
     type: String,
     default: "Available",
