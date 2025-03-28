@@ -39,6 +39,9 @@ app.use("/api/order", require("./routes/orderRoute"));
 //tables
 app.use("/api/table", require("./routes/tableRoute"));
 
+//payment
+app.use("/api/payment", require("./routes/paymentRoute"));
+
 //global error handler
 app.use(globalErrorHandler);
 
