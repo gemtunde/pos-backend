@@ -18,8 +18,8 @@ const createOrder = async (req, res, next) => {
         },
       ],
       mode: "payment",
-      success_url: process.env.VITE_SUCCESS_URL,
-      cancel_url: process.env.VITE_CANCEL_URL,
+      success_url: process.env.SUCCESS_URL,
+      cancel_url: process.env.CANCEL_URL,
     });
 
     res.status(200).json({ success: true, id: session.id });
