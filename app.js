@@ -12,7 +12,7 @@ const app = express();
 
 const PORT = config.port;
 connectDB();
-const Localhost = "http://localhost:5173 ";
+//const Localhost = "http://localhost:5173 ";
 //middlewares
 // app.use(
 //   cors({
@@ -22,7 +22,7 @@ const Localhost = "http://localhost:5173 ";
 // );
 app.use(
   cors({
-    origin: Localhost ?? process.env.FRONTEND_URL,
+    origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
