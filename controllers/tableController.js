@@ -46,10 +46,10 @@ const updateTable = async (req, res, next) => {
     const { orderId, status } = req.body;
 
     const { id } = req.params;
-    if (!mongoose.Types.ObjectId(id)) {
-      const error = createHttpErrors(404, "Invalid Id!!!");
-      return next(error);
-    }
+    // if (!mongoose.Types.ObjectId(id)) {
+    //   const error = createHttpErrors(404, "Invalid Id!!!");
+    //   return next(error);
+    // }
 
     const table = await Table.findByIdAndUpdate(
       id,
